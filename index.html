@@ -32,7 +32,20 @@
             <img id="result-image" src="" alt="Resultado" class="hidden-img">
             <h2>Has votado por:</h2>
             <h1 id="voted-option" class="voted-text"></h1>
-            <button class="reset-btn" onclick="resetVote()">↩ Volver a votar</button>
+            <div class="action-buttons">
+                <button id="btn-reset" class="reset-btn" onclick="resetVote()">↩ Volver a votar</button>
+                <button id="btn-confirm" class="confirm-btn" 
+                    onmousedown="startHoldConfirm(event)" 
+                    onmouseup="stopHoldConfirm()" 
+                    onmouseleave="stopHoldConfirm()"
+                    ontouchstart="startHoldConfirm(event)" 
+                    ontouchend="stopHoldConfirm()" 
+                    ontouchcancel="stopHoldConfirm()">
+                    <div id="hold-progress" class="hold-progress"></div>
+                    <span id="lock-icon" style="position: relative; z-index: 2;">🔓</span> 
+                    <span style="position: relative; z-index: 2;">Mantén para confirmar</span>
+                </button>
+            </div>
         </div>
     </div>
 

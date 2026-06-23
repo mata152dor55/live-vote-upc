@@ -25,3 +25,33 @@ canalVotacion.subscribe((status) => {
     console.log('Estado de la conexión:', status);
   }
 });
+
+function retirarVoto() {
+  if (ultimoVoto) {
+    canalVotacion.send({
+      type: 'broadcast',
+      event: 'nuevo-voto',
+      payload: { accion: '-' + ultimoVoto }
+    }).then(() => {
+      console.log(`Voto retirado: ${ultimoVoto}`);
+      ultimoVoto = null;
+    }).catch((error) => {
+      console.error("Error al retirar el voto:", error);
+    });
+  }
+}
+
+function retirarVoto() {
+  if (ultimoVoto) {
+    canalVotacion.send({
+      type: 'broadcast',
+      event: 'nuevo-voto',
+      payload: { accion: '-' + ultimoVoto }
+    }).then(() => {
+      console.log(`Voto retirado: ${ultimoVoto}`);
+      ultimoVoto = null;
+    }).catch((error) => {
+      console.error("Error al retirar el voto:", error);
+    });
+  }
+}

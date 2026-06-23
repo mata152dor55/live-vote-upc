@@ -3,7 +3,7 @@ const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBh
 
 const clienteSupabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-const canalVotacion = supabase.channel('sala-presentacion');
+const canalVotacion = clienteSupabase.channel('sala-presentacion');
 
 function emitirVoto(opcionElegida) {
   canalVotacion.send({
@@ -11,13 +11,17 @@ function emitirVoto(opcionElegida) {
     event: 'nuevo-voto',
     payload: { accion: opcionElegida }
   }).then(() => {
-    console.log(`Voto enviado: ${opcionElegida}`);
+    console.log(`¡Éxito! Voto enviado: ${opcionElegida}`);
+  }).catch((error) => {
+    console.error("Error al enviar el voto:", error);
   });
 }
 
+// 3. Abrimos el túnel WebSocket
 canalVotacion.subscribe((status) => {
   if (status === 'SUBSCRIBED') {
-    console.log('Celular conectado al canal listo para enviar.');
+    console.log('✅ Túnel WebSocket abierto: Celular listo para votar.');
+  } else {
+    console.log('Estado de la conexión:', status);
   }
 });
-

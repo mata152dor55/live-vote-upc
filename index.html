@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Votación</title>
+    <meta name="description" content="Vota por el destino.">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+
+<body>
+    <img src="upc-logo.png" alt="Logo UPC" class="upc-logo">
+    <div id="voting-container" class="container">
+        <h1>Elige su destino</h1>
+        <div class="options">
+            <button id="btn-vive" class="vote-btn vive" onclick="vote('Vive')">
+                <span class="icon">✨</span>
+                <span class="text">Vive</span>
+            </button>
+            <button id="btn-muere" class="vote-btn muere" onclick="vote('Muere')">
+                <span class="icon">💀</span>
+                <span class="text">Muere</span>
+            </button>
+        </div>
+    </div>
+
+    <div id="result-overlay" class="overlay">
+        <div class="result-content">
+            <img id="result-image" src="" alt="Resultado" class="hidden-img">
+            <h2>Has votado por:</h2>
+            <h1 id="voted-option" class="voted-text"></h1>
+            <button class="reset-btn" onclick="resetVote()">↩ Volver a votar</button>
+        </div>
+    </div>
+
+    <audio id="audio-vive" src="angel.mp3" preload="auto"></audio>
+    <audio id="audio-muere" src="creepy.mp3" preload="auto"></audio>
+
+    <script src="supabase-websockets.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
